@@ -1,0 +1,2 @@
+# kawesqarcoop
+Kawésqar Cooperation Model
