@@ -34,15 +34,14 @@ breed [people person]
 
 globals [
   ;; statistics
-  average-whaling
-  average-helping
+  average-whale-hunt
+  average-help-others
   average-fitness
   average-reosurces
   average-social-capital
   average-disabled
   ;community-size
   log-success-prob ; logistic-whaling-success-prob
-
   mu-high
   mu-low
   mu-medium
@@ -269,8 +268,11 @@ to-report truncated-normal [mu]
 end
 
 to update-statistics
-  set average-whaling (count people with [whaling? = True] / n-people)
-  set average-helping (count people with [helping? = True] / n-people)
+  ; expected behavior
+  set average-whale-hunt mean [whale-hunt] of people
+  set average-help-others mean [help-others] of people
+
+  ; state variables
   set average-fitness mean [fitness] of people
   set average-reosurces mean [resources] of people
   set average-social-capital mean [social-capital] of people
@@ -476,7 +478,7 @@ PLOT
 10
 1086
 130
-average hunting
+average whale hunt
 NIL
 NIL
 0.0
@@ -487,7 +489,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot average-whaling"
+"default" 1.0 0 -16777216 true "" "plot average-whale-hunt"
 
 PLOT
 687
@@ -562,7 +564,7 @@ PLOT
 138
 1087
 258
-average helping
+average help others
 NIL
 NIL
 0.0
@@ -573,7 +575,7 @@ true
 false
 "" ""
 PENS
-"default" 1.0 0 -16777216 true "" "plot average-helping"
+"default" 1.0 0 -16777216 true "" "plot average-help-others"
 
 TEXTBOX
 254
@@ -649,6 +651,24 @@ Social-capital
 12
 0.0
 1
+
+PLOT
+892
+389
+1089
+510
+average fitness
+NIL
+NIL
+0.0
+10.0
+0.0
+1.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot average-fitness"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -992,409 +1012,37 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.3.0
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="4 escenarios 30 rep" repetitions="30" runMetricsEveryStep="false">
-    <setup>startup true</setup>
+  <experiment name="experiment" repetitions="5" runMetricsEveryStep="false">
+    <setup>startup</setup>
     <go>go</go>
     <timeLimit steps="50000"/>
-    <exitCondition>stop-cond</exitCondition>
-    <metric>ticks</metric>
-    <metric>[given-energy] of people</metric>
-    <metric>[correlation] of people</metric>
-    <metric>distribution-given-energy</metric>
-    <metric>max variation</metric>
-    <metric>variation</metric>
-    <metric>avgFitness</metric>
-    <metric>sdFitness</metric>
-    <metric>avgGivenEnergy</metric>
-    <metric>sdGivenEnergy</metric>
-    <enumeratedValueSet variable="prob-mutation">
+    <metric>average-whale-hunt</metric>
+    <metric>average-help-others</metric>
+    <metric>average-fitness</metric>
+    <metric>average-reosurces</metric>
+    <metric>average-social-capital</metric>
+    <metric>average-disabled</metric>
+    <runMetricsCondition>ticks &gt; 25000</runMetricsCondition>
+    <enumeratedValueSet variable="mutation-prob">
       <value value="0.01"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.2"/>
-      <value value="0.8"/>
+    <enumeratedValueSet variable="whaling-harm-prob">
+      <value value="0.15"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="min-energy">
-      <value value="0.2"/>
-      <value value="0.8"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="4 escenarios 30 rep NoSTOP" repetitions="30" runMetricsEveryStep="false">
-    <setup>startup true</setup>
-    <go>go</go>
-    <timeLimit steps="35000"/>
-    <metric>distribution-given-energy</metric>
-    <metric>max variation</metric>
-    <metric>variation</metric>
-    <metric>avgFitness</metric>
-    <metric>sdFitness</metric>
-    <metric>avgGivenEnergy</metric>
-    <metric>sdGivenEnergy</metric>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.2"/>
-      <value value="0.8"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="min-energy">
-      <value value="0.2"/>
-      <value value="0.8"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="1 escenarios 10 rep" repetitions="1" runMetricsEveryStep="false">
-    <setup>startup true</setup>
-    <go>go</go>
-    <timeLimit steps="50000"/>
-    <exitCondition>stop-cond</exitCondition>
-    <metric>ticks</metric>
-    <metric>[given-energy] of people</metric>
-    <metric>[correlation] of people</metric>
-    <metric>distribution-given-energy</metric>
-    <metric>max variation</metric>
-    <metric>variation</metric>
-    <metric>avgFitness</metric>
-    <metric>sdFitness</metric>
-    <metric>avgGivenEnergy</metric>
-    <metric>sdGivenEnergy</metric>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="min-energy">
-      <value value="0.8"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient" repetitions="5" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go</go>
-    <timeLimit steps="50000"/>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <metric>standard-deviation [given-energy] of people</metric>
-    <metric>standard-deviation [correlation] of people</metric>
-    <steppedValueSet variable="prob-resource" first="0.2" step="0.1" last="0.8"/>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="tss1" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>repeat 500 [go]</go>
-    <timeLimit steps="100"/>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <metric>standard-deviation [given-energy] of people</metric>
-    <metric>standard-deviation [correlation] of people</metric>
-    <metric>mean [fitness] of people</metric>
-    <metric>standard-deviation [fitness] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.7"/>
-      <value value="0.3"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.3" step="0.1" last="0.7"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="tss2" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>repeat 500 [go]</go>
-    <timeLimit steps="100"/>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <metric>standard-deviation [given-energy] of people</metric>
-    <metric>standard-deviation [correlation] of people</metric>
-    <metric>mean [fitness] of people</metric>
-    <metric>standard-deviation [fitness] of people</metric>
-    <steppedValueSet variable="prob-resource" first="0.3" step="0.1" last="0.7"/>
-    <enumeratedValueSet variable="min-energy">
-      <value value="0.7"/>
-      <value value="0.3"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-02-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.2"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-03-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.3"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-04-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.4"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-05-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.5"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-06-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
+    <enumeratedValueSet variable="mu-logistic-whaling-success">
       <value value="0.6"/>
     </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="n-people">
-      <value value="300"/>
+      <value value="1000"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
+    <enumeratedValueSet variable="theta">
+      <value value="0.5"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-07-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.7"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="Gradient-08-30" repetitions="30" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <exitCondition>ticks = 50000</exitCondition>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <enumeratedValueSet variable="prob-resource">
-      <value value="0.8"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="min-energy" first="0.2" step="0.1" last="0.8"/>
-    <enumeratedValueSet variable="prob-mutation">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="n-people">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="sharing-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="rounds-per-generation">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="strategy-tournament-size">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="LHS" repetitions="1" runMetricsEveryStep="true">
-    <setup>startup true</setup>
-    <go>go-generation</go>
-    <timeLimit steps="5000"/>
-    <metric>ticks</metric>
-    <metric>mean [given-energy] of people</metric>
-    <metric>mean [correlation] of people</metric>
-    <steppedValueSet variable="exp-number" first="1" step="1" last="25"/>
   </experiment>
 </experiments>
 @#$#@#$#@

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE experiments SYSTEM "behaviorspace.dtd">
+<experiments>
+  <experiment name="My Experiment" repetitions="10" runMetricsEveryStep="false">
+  <setup>setup</setup>
+  <go>go</go>
+  <timeLimit steps="10000" />
+  <metric>average-whale-hunt</metric>
+  <metric>average-help-others</metric>
+  <metric>average-fitness</metric>
+  <runMetricsCondition>ticks &gt; 500</runMetricsCondition>
+  <enumeratedValueSet variable="mutation-prob">
+    <value value="0.1" />
+  </enumeratedValueSet>
+</experiment>
+</experiments>

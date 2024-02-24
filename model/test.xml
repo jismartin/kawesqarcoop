@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE experiments SYSTEM "behaviorspace.dtd">
+<experiments>
+  <experiment name="experiment" repetitions="5" runMetricsEveryStep="false">
+    <setup>startup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>average-whale-hunt</metric>
+    <metric>average-help-others</metric>
+    <metric>average-fitness</metric>
+    <metric>average-reosurces</metric>
+    <metric>average-social-capital</metric>
+    <metric>average-disabled</metric>
+    <runMetricsCondition>ticks &gt; 500</runMetricsCondition>
+    <enumeratedValueSet variable="mutation-prob">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="whaling-harm-prob">
+      <value value="0.15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="mu-logistic-whaling-success">
+      <value value="0.6"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="n-people">
+      <value value="1000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="theta">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+  </experiment>
+</experiments>
