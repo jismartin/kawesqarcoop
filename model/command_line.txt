@@ -1,4 +1,4 @@
-"C:\Program Files\NetLogo 6.4.0.\NetLogo_Console" --headless --model "kawesqar_v01.nlogo" --setup-file "test.xml" --experiment "experimen" --table "results,csv" --threads 3 
+"C:\Program Files\NetLogo 6.4.0.\NetLogo_Console" --headless --model ".\model\kawesqar_v01.nlogo" --experiment "experiment" --table ".\experiments\results_table.csv" --stats ".\experiments\results_stats.csv" --threads 10 
 
 
-./netlogo-headless.sh --model "kawesqar_v01.nlogo" --setup-file "test.xml" --experiment "experimen" --table "results,csv" --threads 3
+./netlogo-headless.sh --model "kawesqar_v01.nlogo" --setup-file "test.xml" --experiment "experiment" --stats "results.csv" --threads 10

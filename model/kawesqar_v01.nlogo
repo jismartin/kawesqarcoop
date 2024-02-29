@@ -149,22 +149,19 @@ to whaling-harm
 
 end
 
-to get-resources
+to get-resources ;;new
 
-  ; whaling success (exclude disabled hunters?)
-  set log-success-prob logistic-whaling-success-prob ((count people with [(whaling? = True) and (disabled? = False)]) / n-people) 0.1
-
-  ; ...all people
+  ; ...not disabled people get "low" resoruces, disabled people get "zero"
   ask people [
     set resources ifelse-value (disabled? = False) [truncated-normal mu-low] [0]
   ]
+  ; whaling success (exclude disabled hunters?)
+  set log-success-prob logistic-whaling-success-prob ((count people with [(whaling? = True) and (disabled? = False)]) / n-people) 0.1
 
-  ; ...only whale hunters
-  ask people with [(disabled? = False) and (whaling? = True)] [
-    (ifelse (random-float 1 < log-success-prob)
+  ; ...only whale hunters not disabled
+  if (random-float 1 < log-success-prob) [
+    ask people with [(disabled? = False) and (whaling? = True)]
       [set resources truncated-normal mu-high ]
-      [set resources truncated-normal mu-low ]; this codeline is not necessary
-    )
   ]
 end
 
@@ -626,7 +623,7 @@ theta
 theta
 0
 1
-1.0
+0.5
 0.05
 1
 NIL
@@ -1017,7 +1014,7 @@ NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="experiment" repetitions="5" runMetricsEveryStep="false">
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="false">
     <setup>startup</setup>
     <go>go</go>
     <timeLimit steps="50000"/>
@@ -1027,7 +1024,7 @@ NetLogo 6.4.0
     <metric>average-reosurces</metric>
     <metric>average-social-capital</metric>
     <metric>average-disabled</metric>
-    <runMetricsCondition>ticks &gt; 25000</runMetricsCondition>
+    <runMetricsCondition>ticks &gt; 30000</runMetricsCondition>
     <enumeratedValueSet variable="mutation-prob">
       <value value="0.01"/>
     </enumeratedValueSet>
