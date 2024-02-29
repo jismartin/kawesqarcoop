@@ -5,7 +5,7 @@
 ;; ----------------------------------------------------------------
 ;; Study cooperation in Kawesqar group
 ;; Copyright (C) 2023
-;; Goonies
+;; The Goonies
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License
@@ -166,9 +166,14 @@ to get-resources ;;new
 end
 
 to share-resources
- ; Only people who decide to HELP OTHERS share reosurces in common
- let share ( (sum [resources] of people with [helping? = True]) / count people with [helping? = True] )
- ask people with [helping? = True] [ set resources share ]
+ ; Only people who decide to HELP OTHERS put reosurces in the pool
+ let pool sum [resources] of people with [helping? = True]
+ ; but any pepople who cooperate (help or hunt) get a share
+ let share pool / count people with [(helping? = True) or (whaling? = True)]
+
+ ; Receive the share
+ ask people with [helping? = True] [ set resources share ] ; only the share
+ ask people with [(helping? = False) and (whaling? = True)] [ set resources (resources + share) ] ; increment with the share
 end
 
 to get-social-capital
@@ -414,7 +419,7 @@ mu-logistic-whaling-success
 mu-logistic-whaling-success
 0
 1.5
-0.6
+1.41
 0.01
 1
 NIL
@@ -623,7 +628,7 @@ theta
 theta
 0
 1
-0.5
+0.05
 0.05
 1
 NIL
