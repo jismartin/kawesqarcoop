@@ -4,11 +4,11 @@
   <experiment name="My Experiment" repetitions="10" runMetricsEveryStep="false">
   <setup>setup</setup>
   <go>go</go>
-  <timeLimit steps="10000" />
+  <timeLimit steps="50000" />
   <metric>average-whale-hunt</metric>
   <metric>average-help-others</metric>
   <metric>average-fitness</metric>
-  <runMetricsCondition>ticks &gt; 500</runMetricsCondition>
+  <runMetricsCondition>ticks &gt; 30000</runMetricsCondition>
   <enumeratedValueSet variable="mutation-prob">
     <value value="0.1" />
   </enumeratedValueSet>

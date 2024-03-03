@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE experiments SYSTEM "behaviorspace.dtd">
 <experiments>
-  <experiment name="experiment" repetitions="5" runMetricsEveryStep="false">
+  <experiment name="experiment" repetitions="10" runMetricsEveryStep="false">
     <setup>startup</setup>
     <go>go</go>
-    <timeLimit steps="1000"/>
+    <timeLimit steps="50000"/>
     <metric>average-whale-hunt</metric>
     <metric>average-help-others</metric>
     <metric>average-fitness</metric>
-    <metric>average-reosurces</metric>
+    <metric>average-resources</metric>
     <metric>average-social-capital</metric>
     <metric>average-disabled</metric>
-    <runMetricsCondition>ticks &gt; 500</runMetricsCondition>
+    <runMetricsCondition>ticks &gt; 30000</runMetricsCondition>
     <enumeratedValueSet variable="mutation-prob">
       <value value="0.01"/>
     </enumeratedValueSet>

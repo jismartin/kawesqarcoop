@@ -37,7 +37,7 @@ globals [
   average-whale-hunt
   average-help-others
   average-fitness
-  average-reosurces
+  average-resources
   average-social-capital
   average-disabled
   ;community-size
@@ -276,7 +276,7 @@ to update-statistics
 
   ; state variables
   set average-fitness mean [fitness] of people
-  set average-reosurces mean [resources] of people
+  set average-resources mean [resources] of people
   set average-social-capital mean [social-capital] of people
   set average-disabled (count people with [disabled? = True] / n-people)
 end
@@ -419,7 +419,7 @@ mu-logistic-whaling-success
 mu-logistic-whaling-success
 0
 1.5
-1.41
+0.45
 0.01
 1
 NIL
@@ -471,7 +471,7 @@ true
 false
 "" ""
 PENS
-"resources" 1.0 0 -16777216 true "" "plot average-reosurces"
+"resources" 1.0 0 -16777216 true "" "plot average-resources"
 "pen-1" 1.0 2 -2674135 true "" "plot mu-low"
 "pen-2" 1.0 2 -13345367 true "" "plot mu-high"
 
@@ -1026,7 +1026,7 @@ NetLogo 6.4.0
     <metric>average-whale-hunt</metric>
     <metric>average-help-others</metric>
     <metric>average-fitness</metric>
-    <metric>average-reosurces</metric>
+    <metric>average-resources</metric>
     <metric>average-social-capital</metric>
     <metric>average-disabled</metric>
     <runMetricsCondition>ticks &gt; 30000</runMetricsCondition>
