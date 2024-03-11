@@ -83,6 +83,15 @@ to create-agents
   ]
 end
 
+to startup-from-ac
+  startup
+  ask people [
+    set whale-hunt 1
+    set help-others 1
+    update-position
+  ]
+end
+
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;; MAIN PROCEDURE ;;;
 ;;;;;;;;;;;;;;;;;;;;;;
@@ -419,7 +428,7 @@ mu-logistic-whaling-success
 mu-logistic-whaling-success
 0
 1.5
-0.45
+0.5
 0.01
 1
 NIL
@@ -537,7 +546,7 @@ whaling-harm-prob
 whaling-harm-prob
 0
 1
-0.15
+0.46
 0.01
 1
 NIL
@@ -628,7 +637,7 @@ theta
 theta
 0
 1
-0.05
+0.35
 0.05
 1
 NIL
