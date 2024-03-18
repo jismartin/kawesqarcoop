@@ -1,3 +1,4 @@
 # Ignoring directories
 /experiments
 /results
+/deprecated
