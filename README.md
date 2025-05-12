@@ -20,13 +20,9 @@ Each agent maximizes a Cobb-Douglas-type fitness function balancing material res
 ```
 .
 ├── model/
-│   └── kawesqarcoop.nlogo            # NetLogo source code
-├── notebooks/
-│   ├── lhs_analysis_exploration.ipynb  # Jupyter notebook for ML analysis and clustering
-│   └── results_visualization.ipynb     # Plots and visual summaries
-├── data/
-│   └── simulation_outputs/           # Raw and aggregated simulation outputs (CSV)
-├── requirements.txt                  # Python dependencies for analysis notebooks
+│   └── kawesqa_v01.nlogo            # NetLogo source code
+├── notebooks/                        # Jupyter notebook for ML analysis and clustering
+├── figures/
 └── README.md                         # This file
 ```
 
