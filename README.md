@@ -21,7 +21,7 @@ Each agent maximizes a Cobb-Douglas-type fitness function balancing material res
 .
 ├── model/
 │   └── kawesqar_v01.nlogo            # NetLogo source code
-├── notebooks/                        # Jupyter notebook for ML analysis and clustering
+├── notebooks/                        # Jupyter notebooks for ML analysis and clustering
 ├── figures/
 └── README.md                         # This file
 ```
