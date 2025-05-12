@@ -20,7 +20,7 @@ Each agent maximizes a Cobb-Douglas-type fitness function balancing material res
 ```
 .
 ├── model/
-│   └── kawesqa_v01.nlogo            # NetLogo source code
+│   └── kawesqar_v01.nlogo            # NetLogo source code
 ├── notebooks/                        # Jupyter notebook for ML analysis and clustering
 ├── figures/
 └── README.md                         # This file
@@ -32,32 +32,11 @@ Each agent maximizes a Cobb-Douglas-type fitness function balancing material res
 - Download and install NetLogo 6.x: https://ccl.northwestern.edu/netlogo/
 
 **Python environment (for analysis):**
-
 Main dependencies:
 - `numpy`, `pandas`
 - `matplotlib`, `seaborn`
 - `scikit-learn`
 - `interpret` (for Explainable Boosting Machines)
-
-## 🚀 How to Run the Model
-
-1. Open `model/kawesqarcoop.nlogo` in NetLogo.
-2. Adjust parameters or load the predefined behavior space setup for batch runs.
-3. Run simulations and export results using NetLogo BehaviorSpace or headless mode.
-
-## 📈 Reproducing Results
-
-To reproduce the analysis in the paper:
-
-```bash
-jupyter notebook notebooks/lhs_analysis_exploration.ipynb
-```
-
-This notebook includes:
-- Stationarity checks using ADF and KPSS tests.
-- Surrogate modeling using RF and EBM.
-- Partial dependence and interaction plots.
-- Clustering of equilibrium behaviors.
 
 ## 📄 Citation
 
