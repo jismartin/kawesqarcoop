@@ -12,7 +12,6 @@ dependencies:
   - statsmodels
   - scikit-learn
   - interpret
-  - jupyterlab
 
   # The following are built-in to Python; no extra packages needed:
   # - pickle
