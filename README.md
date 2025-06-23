@@ -60,6 +60,9 @@ This repository implements a stylized agent-based model of Kawésqar whale-hunti
 
 This project is licensed under the **MIT License**. See the LICENSE file for details.
 
+Exception:
+The NetLogo model file located at model/kawesqar_v01.nlogo is licensed under the GNU General Public License v3.0 (GPL-3.0), due to its derivation from pre-existing GPL-licensed components. Its use, modification, and redistribution are governed by the GPL-3.0. All other source code and content in this repository remain under the MIT License.
+
 
 ## 🧑‍🤝‍🧑 Acknowledgements
 
