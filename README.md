@@ -1,50 +1,68 @@
-# Cooperative Whale Hunting Among the Kawésqar: An Agent-Based Modeling Approach
+# Is it worth the risk? A quantitative exploration of cooperative whale hunting among the Kawésqar hunter-fisher-gatherer society
 
-This repository contains the NetLogo source code, simulation data, and analysis notebooks used in the study:
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
 
-**"Why Risk It? A Quantitative Exploration of Cooperative Whale Hunting among the Kawésqar"**
+This repository contains all code, data, and notebooks to reproduce the results of:
 
-The study explores the emergence of cooperation in hazardous yet non-essential contexts, drawing from the historical example of the Kawésqar people—a hunter-fisher-gatherer society in Western Patagonia. Using Agent-Based Modeling (ABM), we simulate the trade-offs between risk-taking and social capital accumulation, and analyze the system's behavior using interpretable machine learning methods.
+> Briz i Godino, I., Santos, J. I., Ahedo, V., Álvarez, M. R., & Galán, J. M. (2025).
+> *Is it worth the risk? A quantitative exploration of cooperative whale hunting among the Kawésqar hunter-fisher-gatherer society*
+> **X**(Y): ZZ–ZZ. [PDF](https://…)
 
 
 ## 🧠 Summary
 
-We developed an ABM where agents decide whether to:
-1. Engage in high-risk, high-reward whale hunting.
-2. Provide aid to others within the community.
+This repository implements a stylized agent-based model of Kawésqar whale-hunting practices in NetLogo to explore how individuals balance material rewards and social incentives when deciding to engage in risky resource acquisition. The model’s behavior is systematically explored across a broad parameter space using Latin Hypercube Sampling (LHS), and explainable machine-learning techniques are applied to uncover how prestige, reciprocity, and shared norms drive the emergence of stable cooperative equilibria—even without direct survival needs. All code and data needed to reproduce the modeling, analysis, and visualization workflows are included.
 
-Each agent maximizes a Cobb-Douglas-type fitness function balancing material resources and social capital. Model behavior is explored across a broad parameter space using Latin Hypercube Sampling (LHS), and results are analyzed using interpretable machine learning methods (Random Forests and Explainable Boosting Machines).
-
-## 🧰 Repository Structure
+## 📁 Repository Structure
 
 ```
 .
+├── LICENSE                                 # MIT License
+├── environment.yml                         # Conda environment specification
 ├── model/
-│   └── kawesqar_v01.nlogo            # NetLogo source code
-├── notebooks/                        # Jupyter notebooks for ML analysis and clustering
-├── figures/
-└── README.md                         # This file
+│   └── kawesqar_v01.nlogo                  # NetLogo model source
+├── notebooks/
+│   ├── kawesqar_coop.ipynb                 # Plots of some model's functions
+│   ├── lhsampling.ipynb                    # Latin Hypercube sampling and Altamira scripts
+│   ├── lhs_analysis_clustering.ipynb       # Clustering analysis
+│   ├── lhs_analysis_exploration.ipynb      # Exploratory analysis
+│   ├── lhs_analysis_interpretation.ipynb   # RF & EBM interpretation
+├── figures/                                # Pre-rendered figures for the manuscript
+└── README.md                               # This file
 ```
 
-## 🧪 Installation and Requirements
+## 🛠 Installation & Requirements
 
-**NetLogo:**
-- Download and install NetLogo 6.x: https://ccl.northwestern.edu/netlogo/
+### NetLogo
 
-**Python environment (for analysis):**
-Main dependencies:
-- `numpy`, `pandas`
-- `matplotlib`, `seaborn`
-- `scikit-learn`
-- `interpret` (for Explainable Boosting Machines)
+* **Version:** 6.2.2
+* **Download:** [https://ccl.northwestern.edu/netlogo/](https://ccl.northwestern.edu/netlogo/)
 
-## 📄 Citation
+### Python Environment
 
-If you use this code or results in your own work, please cite:
+* **Python Version:** 3.10 or higher
+* **Environment Setup:**
 
-_[Submitted Manuscript]_.
+  ```bash
+  conda env create -f environment.yml
+  conda activate kawesqar-env
+  ```
+* **Key Packages:**
+
+  * numpy
+  * pandas
+  * matplotlib
+  * scikit-learn
+  * scipy
+  * statsmodels
+  * interpret
+
+
+## 📝 License
+
+This project is licensed under the **MIT License**. See the LICENSE file for details.
+
 
 ## 🧑‍🤝‍🧑 Acknowledgements
 
 This work was supported by the FWO-WOG Network for Agent-based Modelling of Socio-ecological Systems in Archaeology, the Spanish Ministry of Science and Innovation (PID2020-118906GB-I00 and RED2022-134890-T), and the MOMENTUM program (MMT24-IMF-02). Simulations were run on the Altamira Supercomputer (IFCA-CSIC).
-
