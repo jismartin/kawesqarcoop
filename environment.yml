@@ -1,0 +1,24 @@
+name: kawesqar-env
+channels:
+  - defaults
+  - conda-forge
+
+dependencies:
+  - python=3.10
+  - numpy
+  - pandas
+  - matplotlib
+  - scipy
+  - statsmodels
+  - scikit-learn
+  - interpret
+  - jupyterlab
+
+  # The following are built-in to Python; no extra packages needed:
+  # - pickle
+  # - xml.etree.ElementTree
+  # - mpl_toolkits.axes_grid1 (part of matplotlib)
+
+# If you ever need PyPI-only packages, you can uncomment a pip section:
+#  - pip:
+#      - some-package
