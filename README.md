@@ -1,7 +1,5 @@
 # Is it worth the risk? A quantitative exploration of cooperative whale hunting among the Kawésqar hunter-fisher-gatherer society
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)  
-
 This repository contains all code, data, and notebooks to reproduce the results of:
 
 > Briz i Godino, I., Santos, J. I., Ahedo, V., Álvarez, M. R., & Galán, J. M. (2025).
