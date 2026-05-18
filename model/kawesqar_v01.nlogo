@@ -176,13 +176,15 @@ end
 
 to share-resources
  ; Only people who decide to HELP OTHERS put reosurces in the pool
- let pool sum [resources] of people with [helping? = True]
  ; but any pepople who cooperate (help or hunt) get a share
- let share pool / count people with [(helping? = True) or (whaling? = True)]
+ let pool sum [resources] of people with [helping? = True]
 
- ; Receive the share
- ask people with [helping? = True] [ set resources share ] ; only the share
- ask people with [(helping? = False) and (whaling? = True)] [ set resources (resources + share) ] ; increment with the share
+ let receivers people with [(helping? = True) or (whaling? = True)]
+ if any? receivers [
+    let share pool / count receivers
+    ask people with [helping? = True] [ set resources share ] ; only the share
+    ask people with [(helping? = False) and (whaling? = True)] [set resources resources + share] ; increment with the share
+ ]
 end
 
 to get-social-capital
