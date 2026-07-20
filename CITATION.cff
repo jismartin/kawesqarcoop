@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+title: "Initial Release: Final Model and Simulation Analysis"
+version: "1.0.1"
+date-released: "2026-07-20"
+type: software
+authors:
+  - family-names: "Santos Martín"
+    given-names: "José Ignacio"
+    affiliation: "Universidad de Burgos"
+repository-code: "https://github.com/jismartin/kawesqarcoop"
+abstract: "This release includes the final version of the model and the accompanying simulation analysis. It provides the implementation, supporting materials, and results needed to reproduce and review the model behavior under the simulated scenarios."
+license: "MIT"
+keywords:
+  - simulation
+  - modelling
+  - analysis
+  - cooperative
+doi: "10.5281/zenodo.21454819"
